@@ -18,6 +18,12 @@ public class CustomerController {
         return modelAndView;
     }
 
+    @GetMapping("hello")
+    public String hello(Model model) {
+        model.addAttribute("name", "Hong J2k5");
+        return "home";
+    }
+
     @GetMapping("{name}")
     public ModelAndView showInfo(@PathVariable String name){
         ModelAndView modelAndView = new ModelAndView("showParam");
