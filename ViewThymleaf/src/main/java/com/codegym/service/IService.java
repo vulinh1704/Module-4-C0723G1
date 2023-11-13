@@ -1,17 +1,12 @@
 package com.codegym.service;
 
-import com.codegym.model.Customer;
-
 import java.util.List;
 
-public interface IService {
-    List<Customer> findAll();
-
-    void save(Customer customer);
-
-    Customer findById(int id);
-
-    void update(int id, Customer customer);
-
+public interface IService<E>{
+    List<E> findAll();
+    int findById(int id);
+    void add(E e);
+    void update(int id,E e);
     void remove(int id);
+    List<E> findByName(String name);
 }

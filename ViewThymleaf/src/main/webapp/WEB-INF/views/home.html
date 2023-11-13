@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<h1>Danh sách gái</h1>
+<a th:href="@{/girl/add}">Thêm mới</a>
+<form th:action="@{/girl/search}" method="get">
+    <input type="text" name="q">
+    <button>Search</button>
+</form>
+<br>
+<span th:text="${message}" style="color: green"></span>
+<table border="1">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Image</th>
+        <th colspan="2">Action</th>
+    </tr>
+    <tr th:each="item: ${girls}">
+        <td th:text="${item.id}"></td>
+        <td th:text="${item.name}"></td>
+        <td><img th:src="${item.image}" alt="" style="width: 100px; height: 100px"/></td>
+        <td><button><a th:href="@{/girl/edit/{id}(id=${item.id})}">Sửa</a></button></td>
+        <td><button>Xóa</button></td>
+    </tr>
+</table>
+</body>
+</html>
