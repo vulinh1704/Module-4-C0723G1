@@ -1,13 +1,19 @@
 package com.codegym.controller;
 
 import com.codegym.model.Girl;
+import com.codegym.model.GirlForm;
 import com.codegym.service.GirlService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -21,6 +27,9 @@ public class GirlController {
         this.girlService = girlService;
     }
 
+    @Value("${file_upload}")
+    private String fileUpload;
+
     @GetMapping("")
     public ModelAndView showHome() {
         List<Girl> girls = girlService.findAll();
@@ -32,13 +41,21 @@ public class GirlController {
     @GetMapping("/add")
     public ModelAndView showFormAdd() {
         ModelAndView modelAndView = new ModelAndView("add");
-        modelAndView.addObject("girl", new Girl());
+        modelAndView.addObject("girlForm", new GirlForm());
         return modelAndView;
     }
 
     @PostMapping("/add")
-    public String add(Girl girl, RedirectAttributes redirectAttributes) {
-        girlService.add(girl);
+    public String add(@ModelAttribute GirlForm girlForm, RedirectAttributes redirectAttributes) {
+        MultipartFile file = girlForm.getImage();
+        String nameImage = file.getOriginalFilename();
+        try {
+            FileCopyUtils.copy(file.getBytes(), new File(fileUpload + nameImage));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Girl girl1 = new Girl(girlForm.getId(), girlForm.getName(), nameImage);
+        girlService.add(girl1);
         redirectAttributes.addFlashAttribute("message", "Thêm thành công");
         return "redirect:/girl";
     }

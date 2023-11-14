@@ -61,8 +61,10 @@ public class AppConfiguration implements WebMvcConfigurer, ApplicationContextAwa
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/images/**")
+        registry.addResourceHandler("/static/image/**")
                 .addResourceLocations("file:" + fileUpload);
+        registry.addResourceHandler("/static/css/**")
+                .addResourceLocations("file:" + "D:\\Java\\Module4_C0723G1\\UploadFile\\src\\main\\webapp\\WEB-INF\\views\\static\\css\\");
     }
 
     @Bean

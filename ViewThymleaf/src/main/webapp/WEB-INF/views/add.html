@@ -6,10 +6,10 @@
 </head>
 <body>
 <h1>Form Add</h1>
-<form action="" method="post" th:object="${girl}">
+<form action="" method="post" th:object="${girlForm}" enctype="multipart/form-data">
     <input type="text" th:field="*{id}">
     <input type="text" th:field="*{name}">
-    <input type="text" th:field="*{image}">
+    <input type="file" th:field="*{image}">
     <button>Thêm</button>
 </form>
 </body>

@@ -10,11 +10,6 @@ import java.util.Locale;
 public class GirlService implements IService<Girl> {
     private List<Girl> girlList = new ArrayList<>();
 
-    public GirlService() {
-        girlList.add(new Girl(1, "Hồng", "https://gaixinhbikini.com/wp-content/uploads/2022/08/6f6876e133f99bec0a509babd33ec398.jpg"));
-        girlList.add(new Girl(2, "Cường", "https://yt3.googleusercontent.com/inhxgLbhHuXL6IllrpCH9jw7jdb0aQLv4hpVdATYsBGJAwFYs8OpuvBKnKz-8M2eHp1oXvoyIQ=s900-c-k-c0x00ffffff-no-rj"));
-        girlList.add(new Girl(3, "Trang", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbxTueL-P-aOQ-i-XNQ-souGSj_D4yp3vNuQ&usqp=CAU"));
-    }
 
     @Override
     public List<Girl> findAll() {
