@@ -1,5 +1,6 @@
 package com.codegym.service;
 
+import com.codegym.model.ClassRoom;
 import com.codegym.model.Student;
 import com.codegym.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class StudentService implements IService<Student>{
+public class StudentService implements IService<Student> {
     @Autowired
     private StudentRepository studentRepository;
 
@@ -21,8 +22,8 @@ public class StudentService implements IService<Student>{
     }
 
     @Override
-    public Optional<Student> findOneById(int id) {
-        return studentRepository.findById(id);
+    public Optional<Student> findOneById(Long id) {
+        return studentRepository.findById(Math.toIntExact(id));
     }
 
     @Override
@@ -42,6 +43,10 @@ public class StudentService implements IService<Student>{
     @Override
     public Student findStudentById(int id) {
         return studentRepository.findByIdCustom(id);
+    }
+
+    public List<Student> findByClassroom(ClassRoom classRoom) {
+        return studentRepository.findByClassRoom(classRoom);
     }
 
 }

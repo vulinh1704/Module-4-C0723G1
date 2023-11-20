@@ -1,5 +1,6 @@
 package com.codegym.repository;
 
+import com.codegym.model.ClassRoom;
 import com.codegym.model.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -15,6 +16,8 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
 
     @Query(value = "select * from student where id = :id", nativeQuery = true)
     Student findByIdCustom(@Param("id") int id);
+
+    List<Student> findByClassRoom(ClassRoom classRoom);
 }
 
 // CRUD, hàm truy vấn, 2 bảng, converter or fomater
