@@ -10,6 +10,7 @@ function getAll() {
                     <th>Age</th>
                     <th>Email</th>
                     <th>Class</th>
+                    <th>Image</th>
                     <th colspan="2">Action</th>
                 </tr>
             `;
@@ -20,6 +21,7 @@ function getAll() {
                     <td>${students[i].age}</td>
                     <td>${students[i].email}</td>
                     <td>${students[i].classRoom.name}</td>
+                    <td><img src="${students[i].image}" alt=""></td>
                     <td><button>Sửa</button></td>
                     <td><button onclick="remove(${students[i].id})">Xóa</button></td>
                 </tr>`
@@ -60,6 +62,7 @@ function search() {
                     <th>Age</th>
                     <th>Email</th>
                     <th>Class</th>
+                    <th>Image</th>
                     <th colspan="2">Action</th>
                 </tr>
             `;
@@ -70,6 +73,7 @@ function search() {
                     <td>${students[i].age}</td>
                     <td>${students[i].email}</td>
                     <td>${students[i].classRoom.name}</td>
+                    <td><img src="${students[i].image}" alt=""></td>
                     <td><button>Sửa</button></td>
                     <td><button onclick="remove(${students[i].id})">Xóa</button></td>
                 </tr>`
