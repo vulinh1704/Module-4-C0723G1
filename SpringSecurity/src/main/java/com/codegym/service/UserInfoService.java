@@ -2,8 +2,6 @@ package com.codegym.service;
 
 import com.codegym.model.UserInfo;
 import com.codegym.repository.UserInfoRepository;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -32,7 +30,8 @@ public class UserInfoService implements UserDetailsService {
     }
 
     public String addUser(UserInfo userInfo) {
-        userInfo.setPassword(passwordEncoder.encode(userInfo.getPassword()));
+        String pass = passwordEncoder.encode(userInfo.getPassword());
+        userInfo.setPassword(pass);
         userInfoRepository.save(userInfo);
         return "User Added Successfully";
     }
